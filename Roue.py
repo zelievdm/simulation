@@ -21,15 +21,16 @@ class Roue :
 		return res
 	
 	def setVitesse(self,vitesseVoulue_kmh):
-		"""
+        	"""
 		Formule de conversion de la vitesse v en km/h en vitesse de rotation n en tr/s :
 		N=(3600*v)/(2*pi*rayon)
 		"""
-		vVoulueTourParSec=(3600*vitesseVoulue_kmh)/(2*math.pi*this.taille_cm)
-		if (vVoulueTourParSec>vMaxTourParSec): # Si la vitesse voulue est plus grande que la vitesse maximale possible
-			self.vTourParSec=vMaxTourParSec
-			print("La vitesse voulue est trop grande, les roues tournent à leur vitesse maximale")
+		vVoulueTourParSec=(3600*vitesseVoulue_kmh)/(2*math.pi*self.taille_cm*(10**(-2)))
+		print(vVoulueTourParSec)
+		if (vVoulueTourParSec>self.vMaxTourParSec): # Si la vitesse voulue est plus grande que la vitesse maximale possible
+		    self.vTourParSec=self.vMaxTourParSec
+		    print("La vitesse voulue est trop grande, les roues tournent à leur vitesse maximale")
 		else: # Si la vitesse est possible pour la roue
-			self.vTourParSec=vVoulueTourParSec
+		    self.vTourParSec=vVoulueTourParSec
 		return self.vTourParSec
 		

@@ -16,3 +16,7 @@ robot = Robot(r_gauche,r_droite)
 print(robot) # affichage --> Le robot en position (0,0) est à l'arret
 
 
+# modification la vitesse des roues d'un robot 
+robot.roue_gauche.setVitesse(10)
+robot.roue_droite.setVitesse(10)
+print(robot)

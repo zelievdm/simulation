@@ -25,14 +25,16 @@ class Roue :
 		Formule de conversion de la vitesse v en km/h en vitesse de rotation n en tr/s :
 		N=(25*v)/(3*60*pi*rayon_en_metre)
 		"""
-		vVoulueTourParSec= (25*vitesseVoulue_kmh/(3*math.pi*self.taille_cm*0.01))/60
+		vVoulueTourParSec = (25*vitesseVoulue_kmh)/(3*60*math.pi*self.taille_cm*0.01)
 
 		if (vVoulueTourParSec<=self.vMaxTourParSec):# Si la vitesse est possible pour la roue 
 		    self.vTourParSec=vVoulueTourParSec
+		    vitesseReelle=vitesseVoulue_kmh
 
 		else: # Si la vitesse voulue est plus grande que la vitesse maximale possible
 		    self.vTourParSec=self.vMaxTourParSec
+		    vitesseReelle=(self.vMaxTourParSec*3*60*math.pi*self.taille_cm*0.01)/25
 		    print("La vitesse voulue est trop grande, les roues tournent à leur vitesse maximale")
 
-		return self.vTourParSec
+		return vitesseReelle
 

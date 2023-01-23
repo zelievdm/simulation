@@ -9,53 +9,25 @@ class Robot :
         self.pos_y = pos_y
         self.estEnTrainDeRouler = estEnTrainDeRouler # Permet de savoir si le robot est en train de rouler
     
-    def avancer(self,vitesseVoulue_kmh,tmp_enSec) :
+    def avancer(self,vitesseVoulue_kmh) :
         """
         Fonction permet le robot à avancer avec la vitesse passée en paramètre
         """
         assert(vitesseVoulue_kmh != 0)
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale
-        
-        vMaxTpS = self.roue_droite.vMaxTourParSec
-        tmp_enH = tmp_enSec/3600 
-        vitesse = 0 
-        if(self.roue_droite.setVitesse(vitesseVoulue_kmh) >vMaxTpS): # si la vitesse voulue est plus grande que la vitesse maximale possible 
-            self.roue_droite.setVitesse(vMaxTpS)
-            self.roue_gauche.setVitesse(vMaxTpS)
-            vitesse = vMaxTpS
-        else:  # si la vitesse voulue est possible pour la roue
-            self.roue_droite.setVitesse(vitesseVoulue_kmh) 
-            self.roue_gauche.setVitesse(vitesseVoulue_kmh)
-            vitesse = vitesseVoulue_kmh
+        print("le robot avance à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
+	self.roue_gauche.setVitesse(vitesseVoulue_kmh)
         self.estEnTrainDeRouler = True
-        distance = (int)((vitesse*1000) * tmp_enH) # calcul la distance 
-        self.pos_x += distance
-        print("le robot avance à la vitesse ",(vitesseVoulue_kmh),"km/h")
-
     
     def reculer(self,vitesseVoulue_kmh,tmp_enSec) :
-
         """
         Fonction permet le robot à reculer avec la vitesse passée en paramètre
         """
         assert(vitesseVoulue_kmh != 0)
         assert(self.roue_droite.vMaxTourParSec == self.roue_gauche.vMaxTourParSec) # Permet de vérifier si les deux roues ont la même vitesse maximale
-        
-        vMaxTpS = self.roue_droite.vMaxTourParSec
-        tmp_enH = tmp_enSec/3600 
-        vitesse = 0 
-        if(self.roue_droite.setVitesse(vitesseVoulue_kmh) >vMaxTpS): # si la vitesse voulue est plus grande que la vitesse maximale possible 
-            self.roue_droite.setVitesse(vMaxTpS)
-            self.roue_gauche.setVitesse(vMaxTpS)
-            vitesse = vMaxTpS
-        else:  # si la vitesse voulue est possible pour la roue
-            self.roue_droite.setVitesse(vitesseVoulue_kmh) 
-            self.roue_gauche.setVitesse(vitesseVoulue_kmh)
-            vitesse = vitesseVoulue_kmh
+	print("le robot recule à la vitesse ",(self.roue_droite.setVitesse(vitesseVoulue_kmh)),"km/h")
+	self.roue_gauche.setVitesse(vitesseVoulue_kmh)
         self.estEnTrainDeRouler = True
-        distance = (int)((vitesse*1000) * tmp_enH) # calcul la distance 
-        self.pos_x -= distance
-        print("le robot recule à la vitesse ",(vitesseVoulue_kmh),"km/h")
                 
     def arreter_urgence(self):
         """
@@ -66,6 +38,11 @@ class Robot :
         self.estEnTrainDeRouler = False
         print("Le robot est à l'arret")
 
+   def nouvelle_position(vitesse,duree):
+	self.pos_x=self.pos_x+(vitesse/(duree*3.6))
+	self.pos_y=self.pos_y
+	print("Le robot a avancé tout droit et est maintenant à la position : x=",self.pos_x," y=",self.pos_y)
+	
     def __str__ (self) :
         """
 	Equivalent methode toString(Java)

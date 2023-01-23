@@ -39,7 +39,7 @@ class Robot :
         print("Le robot est à l'arret")
 
    def nouvelle_position(vitesse,duree):
-	self.pos_x=self.pos_x+(vitesse/(duree*3.6))
+	self.pos_x=self.pos_x+((vitesse/3.6)*duree)
 	self.pos_y=self.pos_y
 	print("Le robot a avancé tout droit et est maintenant à la position : x=",self.pos_x," y=",self.pos_y)
 	
